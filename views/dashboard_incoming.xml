@@ -1,0 +1,129 @@
+<odoo>
+  <data>
+
+           <record id="vit_kanban_action_in" model="ir.actions.act_window">
+            <field name="name">Incoming Overview</field>
+            <field name="res_model">vit.kanban.dashboard</field>
+            <field name="view_mode">kanban,form</field>
+            <field name="context">{'default_code_picking':'incoming'}</field>
+            <field name="domain">[('code_picking','=','incoming')]</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new operation type
+              </p><p>
+                The operation type system allows you to assign each stock
+                operation a specific type which will alter its views accordingly.
+                On the operation type you could e.g. specify if packing is needed by default,
+                if it should show the customer.
+              </p>
+            </field>
+        </record>
+
+        <record id="kanban_dashboard_form_in" model="ir.ui.view" >
+            <field name="name">dashboard_kanban_form_in</field>
+            <field name="model">vit.kanban.dashboard</field>
+            <field name="context">{'default_code_picking':'incoming'}</field>
+            <field name="domain">[('code_picking','=','incoming')]</field>
+            <field name="arch" type="xml">
+              <form string="Overview Form">
+                  <sheet>
+                    <group>
+                      <group>
+                       <field name='company_id' />
+                       <field name='transaction_type' />
+                    </group>
+                  </group>
+                 </sheet>
+               </form>
+            </field>
+          </record>
+
+        <record id="vit_kanban_action_in_config" model="ir.actions.act_window">
+            <field name="name">Incoming Overview</field>
+            <field name="res_model">vit.kanban.dashboard</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'default_code_picking':'incoming'}</field>
+            <field name="domain">[('code_picking','=','incoming')]</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new operation type
+              </p><p>
+                The operation type system allows you to assign each stock
+                operation a specific type which will alter its views accordingly.
+                On the operation type you could e.g. specify if packing is needed by default,
+                if it should show the customer.
+              </p>
+            </field>
+        </record>
+
+        <menuitem action="vit_kanban_action_in_config" 
+                  id="menu_action_kanban_config_in" 
+                  parent="stock.menu_product_in_config_stock" 
+                  sequence="110"/>
+
+        <record id="kanban_dashboard_income" model="ir.ui.view" >
+            <field name="name">dashboard_kanban_in</field>
+            <field name="model">vit.kanban.dashboard</field>
+            <field name="context">{'default_code_picking':'incoming'}</field>
+            <field name="arch" type="xml">
+                <kanban class="oe_background_grey o_kanban_dashboard o_emphasize_colors o_in_kanban" create="0">
+                    <templates id="Overview_incomming">
+                        <t t-name="kanban-box">
+                          <div>
+                            <div t-attf-class="o_kanban_card_header">
+                                  <div class="col-10 o_kanban_card_header_title">
+                                     <div class="o_primary">
+                                          <a type="object" name="get_outgoing_dashboard">
+                                              <field name="transaction_type"/>
+                                          </a>
+                                      </div>
+                                  
+                                        <div>                                          
+                                            <field name='company_id'/>
+                                        </div>
+                             
+                                    </div>
+
+                                      <div class="container o_kanban_card_content">
+                                        <div class="row">
+                                            <div class="col-6 o_kanban_primary_left">
+                                            <button class="btn btn-primary" name="get_action_transaction_type" type="object">
+                                              <span>
+                                                <span>
+                                                    <field name='count_transaction_type'/>
+                                                </span>To Prosess 
+                                              </span>
+                                            </button>
+                                          </div>
+                                              <div class="col-5">
+                                                  <a class="oe_kanban_stock_picking_type_list_in" name="get_action_late" type="object">
+                                                     Late
+                                                  </a>  
+                                              </div>
+                                                <div>
+                                                    <field class="col-5" name="count_state_draft" />
+                                               </div>
+                                        </div>
+                                      </div>
+
+                                </div>
+                                 
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+
+        
+        <menuitem id="vit_kanban.vit_kanban_menu_in"
+            name="Incoming"
+            parent="vit_kanban.vit_kanban_menu"
+            action="vit_kanban_action_in"
+            sequence="20"/>
+
+
+  </data>
+</odoo>

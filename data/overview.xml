@@ -1,0 +1,33 @@
+<odoo noupdate="1">
+	<data>
+			<record id="local" model="vit.kanban.dashboard">
+				<field name="code_picking">incoming</field>
+				<field name="transaction_type">Local</field>
+			</record>
+
+			<record id="Import" model="vit.kanban.dashboard">
+				<field name="code_picking">incoming</field>
+				<field name="transaction_type">Import</field>
+			</record>
+
+			<record id="Kawasan_berikat" model="vit.kanban.dashboard">
+				<field name="code_picking">incoming</field>
+				<field name="transaction_type">Kawasan Berikat</field>
+			</record>
+
+			<record id="local_out" model="vit.kanban.dashboard">
+				<field name="code_picking">outgoing</field>
+				<field name="transaction_type">Local</field>
+			</record>
+
+			<record id="Import_out" model="vit.kanban.dashboard">
+				<field name="code_picking">outgoing</field>
+				<field name="transaction_type">Export</field>
+			</record>
+
+			<record id="Kawasan_berikat_out" model="vit.kanban.dashboard">
+				<field name="code_picking">outgoing</field>
+				<field name="transaction_type">Kawasan Berikat</field>
+			</record>
+	</data>
+</odoo>

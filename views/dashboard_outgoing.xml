@@ -1,0 +1,86 @@
+<odoo>
+  <data>
+
+           <record id="vit_kanban_dashboard_action_out" model="ir.actions.act_window">
+            <field name="name">Outgoing Overview</field>
+            <field name="res_model">vit.kanban.dashboard</field>
+            <field name="view_mode">kanban,form</field>
+            <field name="context">{'default_code_picking':'outgoing'}</field>
+            <field name="domain">[('code_picking','=','outgoing')]</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new operation type
+              </p><p>
+                The operation type system allows you to assign each stock
+                operation a specific type which will alter its views accordingly.
+                On the operation type you could e.g. specify if packing is needed by default,
+                if it should show the customer.
+              </p>
+            </field>
+        </record>
+
+        <record id="kanban_dashboard_form_out" model="ir.ui.view" >
+            <field name="name">dashboard_kanban_form_out</field>
+            <field name="model">vit.kanban.dashboard</field>
+            <field name="context">{'default_code_picking':'outgoing'}</field>
+            <field name="domain">[('code_picking','=','outgoing')]</field>
+            <field name="arch" type="xml">
+              <form string="Overview Form">
+                  <sheet>
+                    <group>
+                      <group>
+                       <field name='company_id' />
+                       <field name='transaction_type' />
+                    </group>
+                  </group>
+                 </sheet>
+               </form>
+            </field>
+          </record>
+
+          <record id="vit_kanban_action_out_config" model="ir.actions.act_window">
+            <field name="name">Outgoing Overview</field>
+            <field name="res_model">vit.kanban.dashboard</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'default_code_picking':'outgoing'}</field>
+            <field name="domain">[('code_picking','=','outgoing')]</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new operation type
+              </p><p>
+                The operation type system allows you to assign each stock
+                operation a specific type which will alter its views accordingly.
+                On the operation type you could e.g. specify if packing is needed by default,
+                if it should show the customer.
+              </p>
+            </field>
+        </record>
+
+
+        <record id="view_dashboard_tree" model="ir.ui.view">
+            <field name="name">vit.kanban.dashboard.tree</field>
+            <field name="model">vit.kanban.dashboard</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Dashboard Overview">
+                    <field name="company_id"/>
+                    <field name="transaction_type"/>
+                </tree>
+            </field> 
+        </record>
+
+        <menuitem action="vit_kanban_action_out_config" 
+            id="menu_action_kanban_config_out" 
+            parent="stock.menu_product_in_config_stock" 
+            sequence="110"/>
+
+        <menuitem id="vit_kanban.vit_kanban_menu_out"
+            name="Outgoing"
+            parent="vit_kanban.vit_kanban_menu"
+            action="vit_kanban_dashboard_action_out"
+            sequence="10"/>
+
+
+  </data>
+</odoo>
